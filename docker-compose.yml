@@ -1,0 +1,31 @@
+version: '3.9'
+services:
+    app:
+        container_name: app
+        #image: arthurlehdermann/alpine-nginx-php7.1 # Yes, it's available on hub.docker.com
+        build: docker/docker-alpine-nginx-php7.1
+        ports:
+            - "80:80"
+        environment:
+            - PHP_ERROR_REPORTING=E_ALL
+            - PHP_DISPLAY_ERRORS=On
+            - PHP_HTML_ERRORS=On
+        volumes:
+            - "./:/app"
+        cap_add:
+            - SYS_TIME
+            - SYS_NICE
+        depends_on:
+            - db
+    db:
+        container_name: db
+        build: docker/docker-mysql-8
+        volumes:
+            - mysql_data:/var/lib/mysql
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: teste
+volumes:
+    mysql_data:

@@ -40,3 +40,15 @@ Este é um teste de desenvolvimento que utiliza o Yii2 Framework. Abaixo estão 
     - Lista dos produtos
         - Retornar paginado
         - Permitir filtrar pelo cliente
+
+## Executando o Projeto
+Para subir o projeto, você precisa ter o Docker e o Docker Compose instalados em sua máquina. Depois de instalados, siga os passos abaixo:
+
+1. Acesse a raiz do projeto, via terminal
+2. Execute o comando `docker-compose up -d`
+3. Acesse o container da aplicação `docker-compose exec app bash` e execute:
+    - `composer install`
+    - `php yii migrate`
+4. Acesse `localhost` no seu navegador, você deverá ver a aplicação executando
+
+**Importante:** note que a porta padrão é a 80. Se essa porta já estiver em uso na sua máquina, você precisará alterar a porta no arquivo `docker-compose.yml`. O mesmo vale para o banco de dados MySQL na porta 3306.
