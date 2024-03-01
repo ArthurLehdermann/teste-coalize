@@ -49,7 +49,7 @@ Para subir o projeto, você precisa ter o Docker e o Docker Compose instalados e
 3. Acesse o container da aplicação `docker-compose exec app bash` e execute:
     - `composer install`
     - `php yii migrate`
-    - `php yii user/create <login> <senha> <nome>`
+    - `php yii create-user/create <login> <senha> <nome>`
 4. Acesse `localhost` no seu navegador, você deverá ver a aplicação executando
 
 **Importante:** note que a porta padrão é a 80. Se essa porta já estiver em uso na sua máquina, você precisará alterar a porta no arquivo `docker-compose.yml`. O mesmo vale para o banco de dados MySQL na porta 3306.

@@ -3,15 +3,29 @@
 namespace app\controllers;
 
 use Yii;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use app\services\AuthService;
 
 class AuthController extends Controller
 {
+    /**
+     * @throws BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+        if ($action->id == 'login') {
+            $this->enableCsrfValidation = false;
+        }
+
+        return parent::beforeAction($action);
+    }
+
     public function actionLogin()
     {
-        $username = Yii::$app->request->post('username');
-        $password = Yii::$app->request->post('password');
+        $data = json_decode(Yii::$app->request->getRawBody(), true);
+        $username = $data['username'];
+        $password = $data['password'];
 
         $service = new AuthService;
 

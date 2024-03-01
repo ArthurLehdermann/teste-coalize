@@ -44,9 +44,9 @@ class User extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'username' => 'Username',
-            'password' => 'Password',
-            'name' => 'Name',
+            'username' => 'Nome de usuário',
+            'password' => 'Senha',
+            'name' => 'Nome',
             'token' => 'Token',
         ];
     }
