@@ -3,6 +3,8 @@
 namespace app\commands;
 
 use app\models\User;
+use app\services\AuthService;
+use app\services\UserService;
 use Yii;
 use Exception;
 use yii\console\Controller;
@@ -20,16 +22,20 @@ class CreateUserController extends Controller
      */
     public function actionCreate($username, $password, $name)
     {
-        $user = new User;
-        $user->username = $username;
-        $user->password = Yii::$app->getSecurity()->generatePasswordHash($password);
-        $user->name = $name;
+        $service = new UserService;
 
-        if ($user->save()) {
-            echo "Usuário \"$name\" criado com sucesso.\n";
+        try {
+            $user = $service->create($username, $password, $name);
+            if ($user->hasErrors()) {
+                echo "Erro ao criar usuário: " . implode(', ', $user->getFirstErrors()) . "\n";
+                return ExitCode::UNSPECIFIED_ERROR;
+            }
+
+            echo "Usuário \"$user->name\" criado com sucesso\n";
+
             return ExitCode::OK;
-        } else {
-            echo "Erro ao criar usuário: " . implode(', ', $user->getFirstErrors()) . "\n";
+        } catch (\Exception $exception) {
+            echo "Error: " . $exception->getMessage() . "\n";
             return ExitCode::UNSPECIFIED_ERROR;
         }
     }
