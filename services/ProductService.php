@@ -2,54 +2,54 @@
 
 namespace app\services;
 
-use app\models\Customer;
+use app\models\Product;
 use yii\data\Pagination;
 use yii\web\NotFoundHttpException;
 
-class CustomerService extends BaseService
+class ProductService extends BaseService
 {
     public function create($data)
     {
-        $customer = new Customer;
-        $customer->attributes = $data;
-        $customer->save();
+        $product = new Product;
+        $product->attributes = $data;
+        $product->save();
 
-        return $customer;
+        return $product;
     }
 
     public function read($id)
     {
-        $customer = Customer::findOne($id);
-        if (!$customer) {
-            throw new NotFoundHttpException('Cliente não encontrado');
+        $product = Product::findOne($id);
+        if (!$product) {
+            throw new NotFoundHttpException('Produto não encontrado');
         }
 
-        return $customer;
+        return $product;
     }
 
     public function update($id, $data)
     {
-        $customer = Customer::findOne($id);
-        if (!$customer) {
-            throw new NotFoundHttpException('Cliente não encontrado');
+        $product = Product::findOne($id);
+        if (!$product) {
+            throw new NotFoundHttpException('Produto não encontrado');
         }
 
-        $customer->attributes = $data;
-        $customer->save();
+        $product->attributes = $data;
+        $product->save();
 
-        return $customer;
+        return $product;
     }
 
     public function delete($id)
     {
-        $customer = Customer::findOne($id);
-        if (!$customer) {
-            throw new NotFoundHttpException('Cliente não encontrado');
+        $product = Product::findOne($id);
+        if (!$product) {
+            throw new NotFoundHttpException('Produto não encontrado');
         }
 
-        $customer->delete();
+        $product->delete();
 
-        return $customer;
+        return $product;
     }
 
     public function list($conditions = [])
@@ -60,7 +60,7 @@ class CustomerService extends BaseService
         $pageSize = (int) ($conditions['pageSize'] ?? 10);
         unset($conditions['pageSize']);
 
-        $query = Customer::find()->where($conditions);
+        $query = Product::find()->where($conditions);
 
         $totalCount = (int) $query->count();
 

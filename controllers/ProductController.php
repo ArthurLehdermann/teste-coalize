@@ -3,15 +3,15 @@
 namespace app\controllers;
 
 use Yii;
-use app\services\CustomerService;
+use app\services\ProductService;
 
-class CustomerController extends BaseController
+class ProductController extends BaseController
 {
-    private $customerService;
+    private $productService;
 
-    public function __construct($id, $module, CustomerService $customerService, $config = [])
+    public function __construct($id, $module, ProductService $productService, $config = [])
     {
-        $this->customerService = $customerService;
+        $this->productService = $productService;
         parent::__construct($id, $module, $config);
     }
 
@@ -29,7 +29,7 @@ class CustomerController extends BaseController
         $conditions = Yii::$app->request->get();
         unset($conditions['p']);
 
-        $data = $this->customerService->list($conditions);
+        $data = $this->productService->list($conditions);
 
         return $this->success($data);
     }
@@ -38,23 +38,23 @@ class CustomerController extends BaseController
     {
         $data = json_decode(Yii::$app->request->getRawBody(), true);
 
-        $customer = $this->customerService->create($data);
-        if ($customer->hasErrors()) {
-            return $this->error($customer->getErrors());
+        $product = $this->productService->create($data);
+        if ($product->hasErrors()) {
+            return $this->error($product->getErrors());
         }
 
-        return $this->ok($customer);
+        return $this->ok($product);
     }
 
     public function actionRead($id)
     {
         try {
-            $customer = $this->customerService->read($id);
+            $product = $this->productService->read($id);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->statusCode);
         }
 
-        return $this->success($customer);
+        return $this->success($product);
     }
 
     public function actionUpdate($id)
@@ -62,30 +62,30 @@ class CustomerController extends BaseController
         $data = json_decode(Yii::$app->request->getRawBody(), true);
 
         try {
-            $customer = $this->customerService->update($id, $data);
+            $product = $this->productService->update($id, $data);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->statusCode);
         }
 
-        if ($customer->hasErrors()) {
-            return $this->error($customer->getErrors());
+        if ($product->hasErrors()) {
+            return $this->error($product->getErrors());
         }
 
-        return $this->success($customer);
+        return $this->success($product);
     }
 
     public function actionDelete($id)
     {
         try {
-            $customer = $this->customerService->delete($id);
+            $product = $this->productService->delete($id);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->statusCode);
         }
 
-        if ($customer->hasErrors()) {
-            return $this->error($customer->getErrors());
+        if ($product->hasErrors()) {
+            return $this->error($product->getErrors());
         }
 
-        return $this->success('Cliente deletado com sucesso');
+        return $this->success('Produto deletado com sucesso');
     }
 }

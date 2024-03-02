@@ -54,7 +54,7 @@ class Customer extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id' => 'Código',
             'name' => 'Nome',
             'cpf' => 'CPF',
             'cep' => 'CEP',

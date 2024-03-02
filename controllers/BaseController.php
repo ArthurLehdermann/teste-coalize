@@ -2,17 +2,16 @@
 
 namespace app\controllers;
 
-use app\components\responses\FailureResponse;
-use app\components\responses\SuccessResponse;
 use Yii;
+use yii\web\Controller;
 use yii\web\Response;
 
-class Controller extends \yii\web\Controller
+class BaseController extends Controller
 {
     public function init()
     {
         parent::init();
-        \Yii::$app->response->format = Response::FORMAT_JSON;
+        Yii::$app->response->format = Response::FORMAT_JSON;
     }
 
     protected function ok($data, $code = 201)
