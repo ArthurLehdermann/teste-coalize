@@ -2,6 +2,7 @@
 
 namespace app\components\validators;
 
+use Yii;
 use yii\validators\Validator;
 
 class CpfValidator extends Validator
@@ -11,7 +12,7 @@ class CpfValidator extends Validator
         $cpf = preg_replace('/[^0-9]/', '', $model->$attribute);
 
         if (strlen($cpf) != 11 || preg_match('/(\d)\1{10}/', $cpf)) {
-            $this->addError($model, $attribute, 'CPF inválido.');
+            $this->addError($model, $attribute, Yii::t('app', 'Invalid CPF.'));
             return;
         }
 
@@ -25,7 +26,7 @@ class CpfValidator extends Validator
             $digit = $digit == 10 ? 0 : $digit;
 
             if ($cpf{$j} != $digit) {
-                $this->addError($model, $attribute, 'CPF inválido.');
+                $this->addError($model, $attribute, Yii::t('app', 'Invalid CPF.'));
                 return;
             }
         }

@@ -4,17 +4,30 @@ namespace app\controllers;
 
 use Yii;
 use app\services\CustomerService;
+use yii\web\BadRequestHttpException;
+use yii\web\Response;
 
 class CustomerController extends BaseController
 {
     private $customerService;
 
+    /**
+     * @param $id
+     * @param $module
+     * @param CustomerService $customerService
+     * @param $config
+     */
     public function __construct($id, $module, CustomerService $customerService, $config = [])
     {
         $this->customerService = $customerService;
         parent::__construct($id, $module, $config);
     }
 
+    /**
+     * @param $action
+     * @return bool
+     * @throws BadRequestHttpException
+     */
     public function beforeAction($action)
     {
         if (in_array($action->id, ['create', 'update', 'delete'])) {
@@ -24,6 +37,9 @@ class CustomerController extends BaseController
         return parent::beforeAction($action);
     }
 
+    /**
+     * @return Response
+     */
     public function actionIndex()
     {
         $conditions = Yii::$app->request->get();
@@ -34,6 +50,9 @@ class CustomerController extends BaseController
         return $this->success($data);
     }
 
+    /**
+     * @return Response
+     */
     public function actionCreate()
     {
         $data = json_decode(Yii::$app->request->getRawBody(), true);
@@ -46,6 +65,10 @@ class CustomerController extends BaseController
         return $this->ok($customer);
     }
 
+    /**
+     * @param $id
+     * @return Response
+     */
     public function actionRead($id)
     {
         try {
@@ -57,6 +80,10 @@ class CustomerController extends BaseController
         return $this->success($customer);
     }
 
+    /**
+     * @param $id
+     * @return Response
+     */
     public function actionUpdate($id)
     {
         $data = json_decode(Yii::$app->request->getRawBody(), true);
@@ -74,6 +101,10 @@ class CustomerController extends BaseController
         return $this->success($customer);
     }
 
+    /**
+     * @param $id
+     * @return Response
+     */
     public function actionDelete($id)
     {
         try {
@@ -86,6 +117,6 @@ class CustomerController extends BaseController
             return $this->error($customer->getErrors());
         }
 
-        return $this->success('Cliente deletado com sucesso');
+        return $this->success(Yii::t('app', 'Customer deleted successfully'));
     }
 }

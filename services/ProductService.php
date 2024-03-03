@@ -3,6 +3,7 @@
 namespace app\services;
 
 use app\models\Product;
+use Yii;
 use yii\data\Pagination;
 use yii\web\NotFoundHttpException;
 
@@ -19,9 +20,13 @@ class ProductService extends BaseService
 
     public function read($id)
     {
-        $product = Product::findOne($id);
+        $product = Product::find()
+            ->where(['id' => $id])
+            ->with('customer')
+            ->one();
+
         if (!$product) {
-            throw new NotFoundHttpException('Produto não encontrado');
+            throw new NotFoundHttpException(Yii::t('app', 'Product not found'));
         }
 
         return $product;
@@ -31,7 +36,7 @@ class ProductService extends BaseService
     {
         $product = Product::findOne($id);
         if (!$product) {
-            throw new NotFoundHttpException('Produto não encontrado');
+            throw new NotFoundHttpException(Yii::t('app', 'Product not found'));
         }
 
         $product->attributes = $data;
@@ -44,7 +49,7 @@ class ProductService extends BaseService
     {
         $product = Product::findOne($id);
         if (!$product) {
-            throw new NotFoundHttpException('Produto não encontrado');
+            throw new NotFoundHttpException(Yii::t('app', 'Product not found'));
         }
 
         $product->delete();
@@ -75,7 +80,7 @@ class ProductService extends BaseService
             ->all();
 
         return [
-            '_links' => $this->getPaginationLinks($conditions, $pagination),
+            '_links' => $this->getPaginationLinks($pagination),
             'limit' => $pagination->limit,
             'results' => $results,
             'size' => count($results),

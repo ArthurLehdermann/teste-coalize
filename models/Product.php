@@ -3,6 +3,7 @@
 namespace app\models;
 
 use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "product".
@@ -15,7 +16,7 @@ use yii\db\ActiveQuery;
  *
  * @property Customer $customer
  */
-class Product extends \yii\db\ActiveRecord
+class Product extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -62,5 +63,12 @@ class Product extends \yii\db\ActiveRecord
     public function getCustomer()
     {
         return $this->hasOne(Customer::class, ['id' => 'id_customer']);
+    }
+
+    public function afterFind()
+    {
+        parent::afterFind();
+
+        $this->price = (float) $this->price;
     }
 }

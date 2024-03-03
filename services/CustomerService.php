@@ -3,6 +3,7 @@
 namespace app\services;
 
 use app\models\Customer;
+use Yii;
 use yii\data\Pagination;
 use yii\web\NotFoundHttpException;
 
@@ -21,7 +22,7 @@ class CustomerService extends BaseService
     {
         $customer = Customer::findOne($id);
         if (!$customer) {
-            throw new NotFoundHttpException('Cliente não encontrado');
+            throw new NotFoundHttpException(Yii::t('app', 'Customer not found'));
         }
 
         return $customer;
@@ -31,7 +32,7 @@ class CustomerService extends BaseService
     {
         $customer = Customer::findOne($id);
         if (!$customer) {
-            throw new NotFoundHttpException('Cliente não encontrado');
+            throw new NotFoundHttpException(Yii::t('app', 'Customer not found'));
         }
 
         $customer->attributes = $data;
@@ -44,7 +45,7 @@ class CustomerService extends BaseService
     {
         $customer = Customer::findOne($id);
         if (!$customer) {
-            throw new NotFoundHttpException('Cliente não encontrado');
+            throw new NotFoundHttpException(Yii::t('app', 'Customer not found'));
         }
 
         $customer->delete();
@@ -75,7 +76,7 @@ class CustomerService extends BaseService
             ->all();
 
         return [
-            '_links' => $this->getPaginationLinks($conditions, $pagination),
+            '_links' => $this->getPaginationLinks($pagination),
             'limit' => $pagination->limit,
             'results' => $results,
             'size' => count($results),

@@ -18,6 +18,19 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'db' => $db,
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    //'basePath' => '@app/messages',
+                    //'sourceLanguage' => 'pt-BR',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                    ],
+                ],
+            ],
+        ],
         'log' => [
             'targets' => [
                 [
@@ -26,7 +39,6 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
     ],
     'params' => $params,
     /*

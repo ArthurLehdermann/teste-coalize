@@ -6,7 +6,7 @@ use yii\helpers\Url;
 
 class BaseService
 {
-    protected function getPaginationLinks($conditions, $pagination)
+    protected function getPaginationLinks($pagination)
     {
         $currentUrl = Url::current([], true);
 
