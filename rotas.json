@@ -1,0 +1,556 @@
+{
+  "__export_date": "2024-03-03T02:14:58.150Z",
+  "__export_format": 4,
+  "__export_source": "insomnia.desktop.app:v2023.2.0",
+  "_type": "export",
+  "resources": [
+    {
+      "_id": "req_46d6e676a22a459884b3b2f2c354d328",
+      "parentId": "fld_002a31a40d1a490ca0ba93429c45d0f6",
+      "modified": 1709430445187,
+      "created": 1682967315601,
+      "url": "{{ _.api_url }}/api/auth",
+      "name": "Auth",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"username\": \"username\",\n\t\"password\": \"password\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "content-type",
+          "value": "application/json",
+          "id": "pair_39816469523e4066ba52f22dd78f8f05"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1696148860362.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_002a31a40d1a490ca0ba93429c45d0f6",
+      "parentId": "wrk_00ca854afa7d4fd495b11d3f81d56b76",
+      "modified": 1709330405124,
+      "created": 1709330405124,
+      "name": "Auth",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1709330405124,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_00ca854afa7d4fd495b11d3f81d56b76",
+      "parentId": null,
+      "modified": 1682967311686,
+      "created": 1682967311686,
+      "name": "Test",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_e51fee560b684f56ba9ef34272721a57",
+      "parentId": "fld_c728a9fdd3f642d48bb2333abee46cc4",
+      "modified": 1709431093463,
+      "created": 1709336080246,
+      "url": "{{ _.api_url }}/api/customers",
+      "name": "[C]reate",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n    \"name\": \"Arthur Lehdermann\",\n    \"cpf\": \"83767878020\",\n    \"cep\": \"95625000\",\n    \"street\": \"Rua Bagé\",\n    \"number\": \"136\",\n    \"city\": \"Imbé\",\n    \"state\": \"Rio Grande do Sul\",\n    \"complement\": \"Casa\",\n    \"photo\": \"https://lehdermann.com/ArthurLehdermann.jpeg\",\n    \"gender\": \"male\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "id": "pair_512fc052a36e4d61a45f85dd8bea7765",
+          "name": "",
+          "value": "",
+          "description": ""
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_46d6e676a22a459884b3b2f2c354d328', 'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
+      },
+      "metaSortKey": -1688777620898.25,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_c728a9fdd3f642d48bb2333abee46cc4",
+      "parentId": "wrk_00ca854afa7d4fd495b11d3f81d56b76",
+      "modified": 1709330428651,
+      "created": 1709330413695,
+      "name": "Cliente",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1709330405074,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_1b158155c1244124b245283493d8247f",
+      "parentId": "fld_c728a9fdd3f642d48bb2333abee46cc4",
+      "modified": 1709382168416,
+      "created": 1709336110682,
+      "url": "{{ _.api_url }}/api/customers/1",
+      "name": "[R]ead",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "id": "pair_512fc052a36e4d61a45f85dd8bea7765",
+          "name": "",
+          "value": "",
+          "description": ""
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_46d6e676a22a459884b3b2f2c354d328', 'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
+      },
+      "metaSortKey": -1685092001216.125,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_478e6df378b44521abd4b7fed3fac6e9",
+      "parentId": "fld_c728a9fdd3f642d48bb2333abee46cc4",
+      "modified": 1709382439582,
+      "created": 1709336139052,
+      "url": "{{ _.api_url }}/api/customers/2",
+      "name": "[U]pdate",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n    \"name\": \"Arthur Lehdermann\",\n    \"cpf\": \"60268383090\",\n    \"cep\": \"95625000\",\n    \"street\": \"Rua Bagé\",\n    \"number\": \"136\",\n    \"city\": \"Imbé\",\n    \"state\": \"Rio Grande do Sul\",\n    \"complement\": \"Casa\",\n    \"photo\": \"https://lehdermann.com/ArthurLehdermann.jpeg\",\n    \"gender\": \"male\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "id": "pair_512fc052a36e4d61a45f85dd8bea7765",
+          "name": "",
+          "value": "",
+          "description": ""
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_46d6e676a22a459884b3b2f2c354d328', 'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
+      },
+      "metaSortKey": -1683249191375.0625,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_bf4a42e589b042daae126e328b98fa59",
+      "parentId": "fld_c728a9fdd3f642d48bb2333abee46cc4",
+      "modified": 1709428217670,
+      "created": 1709336146639,
+      "url": "{{ _.api_url }}/api/customers/2",
+      "name": "[D]elete",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "id": "pair_512fc052a36e4d61a45f85dd8bea7765",
+          "name": "",
+          "value": "",
+          "description": ""
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_46d6e676a22a459884b3b2f2c354d328', 'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
+      },
+      "metaSortKey": -1682327786454.5312,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_0459a72402674052a96ba1dfd34f298b",
+      "parentId": "fld_c728a9fdd3f642d48bb2333abee46cc4",
+      "modified": 1709385911714,
+      "created": 1709330399847,
+      "url": "{{ _.api_url }}/api/customers",
+      "name": "Listar",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "id": "pair_a61e472c929f4261952b60892f7ce2b3",
+          "name": "page",
+          "value": "1",
+          "description": ""
+        },
+        {
+          "id": "pair_da1b39e862094c94b4dd16ae8d3d6bda",
+          "name": "pageSize",
+          "value": "30",
+          "description": ""
+        },
+        {
+          "id": "pair_f8f1004a427b4852a21bf3557296970b",
+          "name": "name",
+          "value": "Arthur Lehdermann",
+          "description": ""
+        }
+      ],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_46d6e676a22a459884b3b2f2c354d328', 'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
+      },
+      "metaSortKey": -1682327786404.5312,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_85d887dc2fa24c488d1247e47f3cdd46",
+      "parentId": "fld_55a47a882ab148f9b3877a459255f585",
+      "modified": 1709420814365,
+      "created": 1709420557404,
+      "url": "{{ _.api_url }}/api/products",
+      "name": "[C]reate",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n    \"name\": \"Produto Teste\",\n    \"price\": 99.99,\n    \"id_customer\": 1,\n    \"photo\": \"http://lorempixel.com.br/500/500/\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "id": "pair_512fc052a36e4d61a45f85dd8bea7765",
+          "name": "",
+          "value": "",
+          "description": ""
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_46d6e676a22a459884b3b2f2c354d328', 'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
+      },
+      "metaSortKey": -1688777620898.25,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_55a47a882ab148f9b3877a459255f585",
+      "parentId": "wrk_00ca854afa7d4fd495b11d3f81d56b76",
+      "modified": 1709420557394,
+      "created": 1709420557394,
+      "name": "Product",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1703154886441,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_473663b9e4154d02b3dad26a1afcc17b",
+      "parentId": "fld_55a47a882ab148f9b3877a459255f585",
+      "modified": 1709423597174,
+      "created": 1709420557409,
+      "url": "{{ _.api_url }}/api/products/1",
+      "name": "[R]ead",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "id": "pair_f30d9392ef3a43ca9a081f9a6a41d13b",
+          "name": "",
+          "value": "",
+          "description": ""
+        }
+      ],
+      "headers": [
+        {
+          "id": "pair_512fc052a36e4d61a45f85dd8bea7765",
+          "name": "",
+          "value": "",
+          "description": ""
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_46d6e676a22a459884b3b2f2c354d328', 'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
+      },
+      "metaSortKey": -1685092001216.125,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_5c39337db211472ba60c4fb5d11bdf5f",
+      "parentId": "fld_55a47a882ab148f9b3877a459255f585",
+      "modified": 1709420797078,
+      "created": 1709420557412,
+      "url": "{{ _.api_url }}/api/products/1",
+      "name": "[U]pdate",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n    \"name\": \"Produto Teste\",\n    \"price\": 123.45,\n    \"id_customer\": 1,\n    \"photo\": \"http://lorempixel.com.br/500/500/\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "id": "pair_512fc052a36e4d61a45f85dd8bea7765",
+          "name": "",
+          "value": "",
+          "description": ""
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_46d6e676a22a459884b3b2f2c354d328', 'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
+      },
+      "metaSortKey": -1683249191375.0625,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_924304c809f2488ea777c6d2ae227f76",
+      "parentId": "fld_55a47a882ab148f9b3877a459255f585",
+      "modified": 1709420804389,
+      "created": 1709420557415,
+      "url": "{{ _.api_url }}/api/products/2",
+      "name": "[D]elete",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "id": "pair_512fc052a36e4d61a45f85dd8bea7765",
+          "name": "",
+          "value": "",
+          "description": ""
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_46d6e676a22a459884b3b2f2c354d328', 'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
+      },
+      "metaSortKey": -1682327786454.5312,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_8a8ea624bcd74efa960f08f986b7889f",
+      "parentId": "fld_55a47a882ab148f9b3877a459255f585",
+      "modified": 1709421000558,
+      "created": 1709420557398,
+      "url": "{{ _.api_url }}/api/products",
+      "name": "Listar",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "id": "pair_a61e472c929f4261952b60892f7ce2b3",
+          "name": "page",
+          "value": "1",
+          "description": ""
+        },
+        {
+          "id": "pair_da1b39e862094c94b4dd16ae8d3d6bda",
+          "name": "pageSize",
+          "value": "30",
+          "description": ""
+        },
+        {
+          "id": "pair_f8f1004a427b4852a21bf3557296970b",
+          "name": "id_customer",
+          "value": "1",
+          "description": "",
+          "disabled": false
+        }
+      ],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_46d6e676a22a459884b3b2f2c354d328', 'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
+      },
+      "metaSortKey": -1682327786404.5312,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_44377f6f1b44ecda9a6394ef34dca96addf713eb",
+      "parentId": "wrk_00ca854afa7d4fd495b11d3f81d56b76",
+      "modified": 1709336041631,
+      "created": 1682967311691,
+      "name": "Base Environment",
+      "data": {
+        "api_url": "localhost"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "api_url"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1682967311691,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_44377f6f1b44ecda9a6394ef34dca96addf713eb",
+      "parentId": "wrk_00ca854afa7d4fd495b11d3f81d56b76",
+      "modified": 1709432030830,
+      "created": 1682967311693,
+      "name": "Default Jar",
+      "cookies": [
+        {
+          "key": "PHPSESSID",
+          "value": "buq4n3p5q5h44hpji70jfd1hro",
+          "domain": "localhost",
+          "path": "/",
+          "httpOnly": true,
+          "hostOnly": true,
+          "creation": "2024-03-01T21:33:27.090Z",
+          "lastAccessed": "2024-03-03T02:13:50.830Z",
+          "id": "5615823099785309"
+        },
+        {
+          "key": "_csrf",
+          "value": "bd58204bac2d60e40c5742506a443687e0e7a428ba815eb20fa05fc4828f4fb2a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22htYfLjM1IJ44OtpeTwSvOd0G3-blJrrg%22%3B%7D",
+          "domain": "localhost",
+          "path": "/",
+          "httpOnly": true,
+          "extensions": [
+            "samesite=Lax"
+          ],
+          "hostOnly": true,
+          "creation": "2024-03-01T21:33:27.090Z",
+          "lastAccessed": "2024-03-03T02:13:50.830Z",
+          "id": "9015770802320031"
+        },
+        {
+          "key": "_identity",
+          "value": "deleted",
+          "expires": "1970-01-01T00:00:01.000Z",
+          "maxAge": 0,
+          "domain": "localhost",
+          "path": "/",
+          "httpOnly": true,
+          "extensions": [
+            "samesite=Lax"
+          ],
+          "hostOnly": true,
+          "creation": "2024-03-03T01:09:19.718Z",
+          "lastAccessed": "2024-03-03T02:13:50.830Z",
+          "id": "9385357616953294"
+        }
+      ],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_3e5cb7ad42804631915b298f91ca155c",
+      "parentId": "wrk_00ca854afa7d4fd495b11d3f81d56b76",
+      "modified": 1682967311687,
+      "created": 1682967311687,
+      "fileName": "Test",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    }
+  ]
+}
