@@ -30,13 +30,13 @@ class SiteController extends Controller
     }
 
     /**
-     * Download rotas.json file
+     * Download Insomnia_2024-03-03.json file
      *
      * @throws NotFoundHttpException
      */
     public function actionRotas()
     {
-        $filePath = Yii::getAlias('@app') . '/rotas.json';
+        $filePath = Yii::getAlias('@app') . '/Insomnia_2024-03-03.json';
         if (file_exists($filePath)) {
             return Yii::$app->response->sendFile($filePath);
         } else {
