@@ -18,6 +18,7 @@ class m240301_032058_create_users_table extends Migration
             'password' => $this->string()->notNull(),
             'name' => $this->string()->notNull(),
             'token' => $this->string()->unique(),
+            'refresh_token' => $this->string()->unique(),
         ]);
     }
 

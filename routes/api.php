@@ -2,6 +2,7 @@
 
 return [
     'POST api/auth' => 'auth/login',
+    'POST api/auth/refresh' => 'auth/refresh-token',
 
     'GET api/customers/<id:\d+>' => 'customer/read',
     'POST api/customers' => 'customer/create',

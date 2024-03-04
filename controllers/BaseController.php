@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
+use app\components\helpers\HttpBearerAuth;
 use Yii;
-use yii\filters\auth\HttpBearerAuth;
 use yii\web\Controller;
 use yii\web\Response;
 

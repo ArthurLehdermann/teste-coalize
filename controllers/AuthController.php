@@ -11,6 +11,9 @@ use yii\web\Response;
 
 class AuthController extends Controller
 {
+    /**
+     * @var AuthService
+     */
     private $authService;
 
     /**
@@ -32,7 +35,7 @@ class AuthController extends Controller
      */
     public function beforeAction($action)
     {
-        if ($action->id == 'login') {
+        if ($action->id == 'login' || $action->id == 'refresh-token') {
             $this->enableCsrfValidation = false;
         }
 
@@ -49,8 +52,30 @@ class AuthController extends Controller
         $password = $data['password'] ?? null;
 
         try {
-            $token = $this->authService->authenticate($username, $password);
-            return $this->asJson(['token' => $token]);
+            $response = $this->authService->authenticate($username, $password);
+            return $this->asJson($response);
+        } catch (Exception $exception) {
+            Yii::$app->response->statusCode = 400;
+
+            $message = [
+                'error' => $exception->getMessage(),
+            ];
+
+            return $this->asJson($message);
+        }
+    }
+
+    /**
+     * @return Response
+     */
+    public function actionRefreshToken()
+    {
+        $data = json_decode(Yii::$app->request->getRawBody(), true);
+        $refreshToken = $data['refresh_token'] ?? null;
+
+        try {
+            $tokens = $this->authService->refreshToken($refreshToken);
+            return $this->asJson($tokens);
         } catch (Exception $exception) {
 
             Yii::$app->response->statusCode = 400;

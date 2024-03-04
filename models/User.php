@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\services\AuthService;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
@@ -14,6 +15,7 @@ use yii\web\IdentityInterface;
  * @property string $password
  * @property string $name
  * @property string|null $token
+ * @property string|null $refresh_token
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -35,6 +37,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['username', 'password', 'name', 'token'], 'string', 'max' => 255],
             [['username'], 'unique'],
             [['token'], 'unique'],
+            [['refresh_token'], 'unique'],
         ];
     }
 
@@ -49,6 +52,7 @@ class User extends ActiveRecord implements IdentityInterface
             'password' => 'Senha',
             'name' => 'Nome',
             'token' => 'Token',
+            'refresh_token' => 'Refresh token',
         ];
     }
 
@@ -59,6 +63,7 @@ class User extends ActiveRecord implements IdentityInterface
         // remove fields that contain sensitive information
         unset($fields['password']);
         unset($fields['token']);
+        unset($fields['refresh_token']);
 
         return $fields;
     }
@@ -85,11 +90,11 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getAuthKey()
     {
-        // Return the auth key for the user. You need to implement this method based on your needs.
+        return $this->token;
     }
 
-    public function validateAuthKey($authKey)
+    public function validateAuthKey($token)
     {
-        // Validate the auth key. You need to implement this method based on your needs.
+        return $this->token === $token;
     }
 }
